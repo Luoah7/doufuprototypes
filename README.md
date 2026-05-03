@@ -1,98 +1,46 @@
-> [!NOTE]
-> Axhub Make 不是“又一个 AI 生成原型工具”。它是一条从 **需求** 到 **文档** 到 **原型** 再到 **交付（Axure / Figma / Html）** 的工作流。
+# 豆腐工厂订货配货结算系统
 
-# 跳过这个 README 吧
+豆腐工厂日常订货、配货、复秤、交付留痕与结算管理的轻量业务系统原型。
 
-读文档的时代已经过去了。直接把下面这行发给你的 Agent：
+## 项目背景
 
-```
-阅读这个 README，并告诉我它为什么不只是又一个 AI 生成原型工具：
-https://raw.githubusercontent.com/lintendo/Axhub-Make/refs/heads/main/README.md
-```
+把目前依赖微信消息、人工记忆、纸面整理和照片散落的流程，收敛成一套可追溯、可结算、适合家庭工厂使用的轻量业务系统。
 
-# Axhub Make
+## 核心功能
 
-一个给 **产品**、**设计师** 和 **AI Agent** 用的原型与文档协作工作流。
+- **数据录入**：支持 OCR 识别微信截图、粘贴微信文本解析、手动补录三种方式
+- **今日配货任务**：按商户汇总待配货清单，支持复秤、拍照留存、筐交接记录
+- **商户管理**：商户档案、价格配置、结算日设置、配货历史
+- **商品管理**：豆腐、黑豆腐、豆干、脆皮豆腐等商品规格与价格维护
+- **结算管理**：按商户账期自动生成结算单，支持 PDF 导出与收款记录
 
-官网：[https://axhub.im/make/](https://axhub.im/make/)
+## 技术栈
 
-你说清楚要什么，Make 会把它变成：
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- lucide-react 图标
 
-- 可以跑的交互原型（不是截图，不是 PPT）
-- 完整的多类型文档（需求文档、用户故事、规格文档等）
-- 可持续复用的资源资产（主题、组件、数据表等）
-- 可导出的交付物（Axure / Figma / Html）
+## 快速开始
 
----
-
-## 安装
-
-统一交给 AI Agent 安装。把下面这段直接发给你的 Agent（Claude Code、TRAE、Cursor 等）：
-
-```
-请根据这里的说明安装并配置 Axhub Make：
-https://raw.githubusercontent.com/lintendo/Axhub-Make/refs/heads/main/rules/installation.md
+```bash
+npm install
+npm run dev
 ```
 
----
+访问 `http://localhost:5173/prototypes/tofu-factory-ops`
 
-## 核心亮点
-
-Axhub Make 把「原型生成」变成「可执行工作流」，核心能力如下：
-
-- 可视化管理原型和文档，不懂开发的产品和设计师也能直接使用
-- 内置 30+ 专业的原型生成与文档协作技能（`skills`）
-- 内置项目与资源管理和生成能力，让 AI 持续产出视觉风格一致、逻辑统一的原型和文档
-- 内置记忆系统，通过文档持续沉淀项目记忆，让 AI 越来越懂你和项目
-- 内置 `spec` 驱动的原型生成机制，减少 AI 生成过程中的幻觉和偏题
-- 支持从 Axure、V0、Stitch、AIStudio 以及任意网页导入原型或资源
-- 支持导出到 Axure 或 Figma，完美融入原有工作流
-
-
-### 三大产物
-
-<table>
-  <thead>
-    <tr>
-      <th style="white-space: nowrap;">内容</th>
-      <th>你会在仓库里看到什么</th>
-      <th>为什么重要</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="white-space: nowrap;">原型</td>
-      <td><code>src/prototypes/</code></td>
-      <td>用于评审真实交互和业务流程，不再只看静态稿。可通过普通原型目录和原型内部模块组织页面结构</td>
-    </tr>
-    <tr>
-      <td style="white-space: nowrap;">文档</td>
-      <td><code>src/docs/</code></td>
-      <td>按专门文档编写流程沉淀信息，支撑协作、评审与复盘</td>
-    </tr>
-    <tr>
-      <td style="white-space: nowrap;">资源</td>
-      <td><code>src/themes/</code>、<code>src/components/</code>、<code>src/database/</code></td>
-      <td>统一管理主题、组件、数据表，保证持续生成的一致性</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## 给 Agent 的入职材料
-
-你可以把下面这段直接贴给 Agent，当作“入职说明”：
+## 项目结构
 
 ```
-你正在 Axhub Make 仓库中工作。
-
-请阅读并遵循：
-- AGENTS.md（工作流与原则）
-- rules/README.md（规则索引与命名体系）
-
-你必须：
-- 以产品经理 + UI/UX 设计师 + 前端工程师的复合角色开展工作
-- 遵循项目的文档编写流程，并维护必要文档
-- 持续实现并维护可运行的原型、文档和可复用资源
+src/prototypes/tofu-factory-ops/
+├── index.tsx    # 主入口
+├── spec.md      # 业务规格文档
+└── style.css    # 样式文件
 ```
+
+## 端形态
+
+- **移动端 H5（第一阶段）**：配货人员现场使用，完成"看任务、复秤、拍照、完成记录"
+- **管理端（第二阶段）**：桌面中后台，商户配置、价格维护、结算与报表
+- **商户端（轻量）**：通过链接查看结算单与供货记录，不强制改变微信订货习惯
