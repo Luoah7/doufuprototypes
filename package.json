@@ -9,6 +9,7 @@
     "dev": "pnpm vendor:sync && vite",
     "start": "pnpm vendor:sync && vite",
     "build": "pnpm vendor:sync && node scripts/scan-entries.js && node scripts/build-all.js && node scripts/generate-dist-html.js",
+    "build:cloudflare": "pnpm vendor:sync && node scripts/build-cloudflare.js",
     "preview": "vite preview",
     "typecheck": "pnpm vendor:sync && tsc --noEmit -p tsconfig.typecheck.json",
     "test": "vitest --run",
