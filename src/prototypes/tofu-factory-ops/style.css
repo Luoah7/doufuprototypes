@@ -1,0 +1,2127 @@
+/**
+ * @name 豆腐工厂移动配货原型样式
+ */
+
+/* ========== 主题字体规范 ========== */
+.tofu-ops {
+    /* 字号阶梯 */
+    --fs-xs: 11px;      /* 极小标签、角标 */
+    --fs-sm: 12px;      /* 辅助文字、meta */
+    --fs-base: 13px;    /* 正文、描述 */
+    --fs-md: 14px;      /* 按钮、表单标签 */
+    --fs-lg: 15px;      /* 卡片标题 */
+    --fs-xl: 16px;      /* 输入框、重要标签 */
+    --fs-2xl: 18px;     /* 页面标题 */
+    --fs-3xl: 22px;     /* 大号展示 */
+    --fs-4xl: 28px;     /* 超大数字 */
+    --fs-5xl: 34px;     /* 登录标题 */
+
+    /* 字重阶梯 */
+    --fw-normal: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-black: 800;
+}
+
+.tofu-ops {
+    min-height: var(--vh, 100vh);
+    padding: 18px;
+    color: #1c211c;
+    background:
+        radial-gradient(circle at 12% -8%, rgba(92, 184, 92, 0.28), transparent 32%),
+        radial-gradient(circle at 92% 8%, rgba(245, 181, 80, 0.22), transparent 30%),
+        linear-gradient(180deg, #f7f1df 0%, #eef5e8 42%, #e7f0ec 100%);
+    font-family: 'SF Pro Display', 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.tofu-ops * {
+    box-sizing: border-box;
+}
+
+.tofu-ops button,
+.tofu-ops input,
+.tofu-ops textarea {
+    font: inherit;
+}
+
+.tofu-ops button {
+    border: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tofu-ops__shell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 430px);
+    height: calc(var(--vh, 100vh) - 36px);
+    margin: 0 auto;
+    overflow: hidden;
+    background: #f9f5e8;
+    border: 1px solid rgba(42, 54, 43, 0.08);
+    border-radius: 34px;
+    box-shadow: 0 30px 88px rgba(41, 52, 43, 0.2);
+}
+
+.tofu-ops__body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 14px 14px 18px;
+    overscroll-behavior-y: contain;
+    scrollbar-width: none;
+}
+
+.tofu-ops__body::-webkit-scrollbar {
+    display: none;
+}
+
+.tofu-ops__quick-card,
+.tofu-ops__next-card,
+.tofu-ops__home-card,
+.tofu-ops__task-card,
+.tofu-ops__detail-hero,
+.tofu-ops__card,
+.tofu-ops__bill-hero,
+.tofu-ops__bill-hint,
+.tofu-ops__metric-strip {
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    box-shadow: 0 16px 34px rgba(38, 50, 39, 0.08);
+}
+
+.tofu-ops__section-kicker {
+    color: #7e8b80;
+    font-size: var(--fs-sm);
+    line-height: 1;
+    font-weight: var(--fw-black);
+    letter-spacing: 0.08em;
+}
+
+.tofu-ops__quick-grid {
+    display: grid;
+    grid-template-columns: 1.12fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.tofu-ops__quick-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    min-height: 108px;
+    padding: 13px;
+    text-align: left;
+    color: #243026;
+    background: rgba(255, 255, 248, 0.9);
+    border-radius: 24px;
+}
+
+.tofu-ops__quick-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    color: #1d6b49;
+    background: #ecf7e9;
+    border-radius: 15px;
+}
+
+.tofu-ops__quick-card > span:not(.tofu-ops__quick-icon) {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__quick-card small {
+    color: #758177;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__quick-card.is-primary {
+    color: #fff8e4;
+    background: linear-gradient(145deg, #e08422, #f5aa3d);
+    box-shadow: 0 12px 28px rgba(201, 111, 28, 0.28);
+    transform: translateY(-1px);
+}
+
+.tofu-ops__quick-card.is-primary .tofu-ops__quick-icon {
+    color: #d9781e;
+    background: rgba(255, 250, 232, 0.94);
+}
+
+.tofu-ops__quick-card.is-primary small {
+    color: rgba(255, 250, 232, 0.76);
+}
+
+.tofu-ops__shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.tofu-ops__shortcut-grid--manage {
+    grid-template-columns: 1fr;
+}
+
+.tofu-ops__shortcut-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px;
+    text-align: left;
+    color: #243026;
+    background: rgba(255, 255, 248, 0.92);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(38, 50, 39, 0.08);
+}
+
+.tofu-ops__shortcut-card strong {
+    display: block;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__shortcut-card small {
+    display: block;
+    margin-top: 4px;
+    color: #758177;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__shortcut-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    color: #1d6b49;
+    background: #ecf7e9;
+    border-radius: 15px;
+}
+
+.tofu-ops__search-bar {
+    margin-top: 12px;
+}
+
+.tofu-ops__search-bar input {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 14px;
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    outline: none;
+    color: #1f2a22;
+    background: rgba(255, 255, 248, 0.94);
+    border-radius: 18px;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
+}
+
+.tofu-ops__search-bar input:focus {
+    border-color: rgba(29, 107, 73, 0.32);
+    box-shadow: 0 0 0 3px rgba(29, 107, 73, 0.08);
+}
+
+.tofu-ops__search-summary {
+    margin-top: 8px;
+    color: #667368;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__search-bar--compact {
+    margin-top: 10px;
+}
+
+.tofu-ops__home-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.tofu-ops__home-metric-card {
+    min-height: 116px;
+    padding: 15px;
+    color: #263227;
+    background: rgba(255, 255, 248, 0.94);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 14px 28px rgba(38, 50, 39, 0.08);
+}
+
+.tofu-ops__home-metric-card span {
+    color: #6f7b71;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__home-metric-card strong {
+    display: block;
+    margin-top: 10px;
+    color: #1d6b49;
+    font-size: var(--fs-4xl);
+    line-height: 1;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.05em;
+}
+
+.tofu-ops__home-metric-card em {
+    margin-left: 4px;
+    font-size: var(--fs-base);
+    font-style: normal;
+    letter-spacing: 0;
+}
+
+.tofu-ops__home-metric-card small {
+    display: block;
+    margin-top: 10px;
+    color: #7a867c;
+    font-size: var(--fs-xs);
+    line-height: 1.35;
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__manage-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 34px;
+    padding: 0 11px;
+    flex-shrink: 0;
+    color: #fffaf0;
+    background: linear-gradient(135deg, #1d6b49, #2f9a67);
+    border-radius: 999px;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+    box-shadow: 0 10px 20px rgba(29, 107, 73, 0.18);
+}
+
+.tofu-ops__manage-action-btn.is-muted {
+    color: #647064;
+    background: #eef3ed;
+    box-shadow: none;
+}
+
+.tofu-ops__entry-panel {
+    margin-top: 12px;
+    padding: 15px;
+    background: rgba(255, 255, 248, 0.95);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 16px 34px rgba(38, 50, 39, 0.08);
+}
+
+.tofu-ops__entry-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.tofu-ops__entry-panel-head h3 {
+    margin: 6px 0 0;
+    color: #1f2a22;
+    font-size: var(--fs-2xl);
+    line-height: 1.12;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.04em;
+}
+
+.tofu-ops__entry-panel-head button {
+    min-height: 34px;
+    padding: 0 12px;
+    color: #5f6c62;
+    background: #f0f5eb;
+    border-radius: 999px;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__entry-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 13px;
+    padding: 18px 14px;
+    color: #486154;
+    text-align: center;
+    background: #f0f6ec;
+    border: 1px dashed rgba(29, 107, 73, 0.24);
+    border-radius: 20px;
+}
+
+.tofu-ops__entry-upload strong {
+    color: #1f2a22;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__entry-upload span {
+    color: #6d7a70;
+    font-size: var(--fs-sm);
+    line-height: 1.45;
+    font-weight: var(--fw-bold);
+}
+
+.tofu-ops__entry-upload button,
+.tofu-ops__entry-submit {
+    min-height: 42px;
+    padding: 0 16px;
+    color: #fffaf0;
+    background: linear-gradient(135deg, #1d6b49, #2f9a67);
+    border-radius: 15px;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__entry-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    color: #1d6b49;
+    background: #ecf7e9;
+    border-radius: 12px;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+}
+
+.tofu-ops__parsed-card {
+    padding: 14px;
+    background: #f4f8f1;
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 18px;
+}
+
+.tofu-ops__parsed-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.tofu-ops__parsed-head strong {
+    color: #1f2a22;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__parsed-head span {
+    color: #1d6b49;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
+}
+
+.tofu-ops__parsed-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.tofu-ops__entry-form {
+    display: grid;
+    gap: 10px;
+    margin-top: 13px;
+}
+
+.tofu-ops__entry-form input,
+.tofu-ops__entry-form select,
+.tofu-ops__entry-form textarea {
+    width: 100%;
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    outline: none;
+    color: #1f2a22;
+    background: #fffaf0;
+    border-radius: 16px;
+    padding: 12px;
+    font-size: var(--fs-md);
+    line-height: 1.45;
+    font-weight: var(--fw-bold);
+}
+
+.tofu-ops__entry-form input,
+.tofu-ops__entry-form select {
+    min-height: 44px;
+}
+
+.tofu-ops__entry-form input:focus,
+.tofu-ops__entry-form select:focus,
+.tofu-ops__entry-form textarea:focus {
+    border-color: rgba(29, 107, 73, 0.32);
+    box-shadow: 0 0 0 3px rgba(29, 107, 73, 0.08);
+}
+
+.tofu-ops__entry-submit {
+    width: 100%;
+}
+
+.tofu-ops__entry-inline-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.tofu-ops__entry-inline-grid.is-2col,
+.tofu-ops__entry-total {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tofu-ops__entry-summary-card,
+.tofu-ops__entry-stepper-card,
+.tofu-ops__entry-weight-card,
+.tofu-ops__entry-total > div,
+.tofu-ops__manual-line {
+    padding: 13px;
+    background: #f4f8f1;
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 18px;
+}
+
+.tofu-ops__entry-summary-card span,
+.tofu-ops__entry-stepper-card span,
+.tofu-ops__entry-weight-card span,
+.tofu-ops__entry-total span {
+    display: block;
+    color: #738075;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__entry-summary-card strong,
+.tofu-ops__entry-total strong {
+    display: block;
+    margin-top: 8px;
+    color: #1f2a22;
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__entry-weight-card input {
+    margin-top: 8px;
+}
+
+.tofu-ops__manual-line {
+    padding: 12px;
+    background: #fbfcf7;
+}
+
+.tofu-ops__manual-line-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    color: #566458;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__manual-line-foot strong {
+    color: #1d6b49;
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__ghost-btn,
+.tofu-ops__entry-secondary {
+    min-height: 40px;
+    border-radius: 14px;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__ghost-btn {
+    width: 100%;
+    margin-top: 10px;
+    color: #607064;
+    background: #eef3ed;
+}
+
+.tofu-ops__ghost-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.tofu-ops__entry-secondary {
+    color: #1d6b49;
+    background: #e7f5ea;
+}
+
+.tofu-ops__entry-total {
+    display: grid;
+    gap: 10px;
+}
+
+.tofu-ops__manage-form {
+    margin-top: 12px;
+}
+
+.tofu-ops__manage-product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.tofu-ops__product-card {
+    width: 100%;
+    padding: 14px;
+    text-align: left;
+    color: #243026;
+    background: rgba(255, 255, 248, 0.94);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(38, 50, 39, 0.06);
+    transition: box-shadow 0.15s, border-color 0.15s;
+    cursor: pointer;
+}
+
+.tofu-ops__product-card:active {
+    border-color: rgba(29, 107, 73, 0.22);
+    box-shadow: 0 10px 28px rgba(29, 107, 73, 0.14);
+}
+
+.tofu-ops__product-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.tofu-ops__product-card-name {
+    color: #1f2a22;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__product-card-count {
+    color: #8a968c;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-black);
+    padding: 2px 8px;
+    background: #f0f5eb;
+    border-radius: 999px;
+}
+
+.tofu-ops__product-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.tofu-ops__product-spec {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    background: #f4f8f1;
+    border-radius: 12px;
+}
+
+.tofu-ops__product-spec-label {
+    color: #3e4a40;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__product-spec-price {
+    color: #1d6b49;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(38, 50, 39, 0.08);
+    text-align: left;
+    color: inherit;
+    background: transparent;
+    border-radius: 0;
+}
+
+.tofu-ops__history-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.tofu-ops__history-row.is-expanded {
+    background: #f0f6ec;
+    margin: 0 -16px;
+    padding: 13px 16px;
+    border-radius: 14px;
+    border-bottom: 0;
+}
+
+.tofu-ops__history-items {
+    margin-top: 12px;
+    padding: 12px;
+    background: #f4f8f1;
+    border: 1px solid rgba(38, 50, 39, 0.06);
+    border-radius: 18px;
+}
+
+.tofu-ops__history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(38, 50, 39, 0.06);
+}
+
+.tofu-ops__history-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.tofu-ops__history-photos {
+    margin-top: 12px;
+}
+
+.tofu-ops__history-photos .tofu-ops__section-kicker {
+    margin-bottom: 8px;
+}
+
+.tofu-ops__login-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.tofu-ops__login-card {
+    margin-top: 2px;
+    padding: 28px 22px;
+    background: rgba(255, 255, 248, 0.95);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 28px;
+    box-shadow: 0 16px 34px rgba(38, 50, 39, 0.08);
+}
+
+.tofu-ops__login-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.tofu-ops__login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    color: #fffaf0;
+    background: linear-gradient(145deg, #1d6b49, #2f9a67);
+    border-radius: 18px;
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-black);
+    box-shadow: 0 12px 28px rgba(29, 107, 73, 0.28);
+}
+
+.tofu-ops__login-title {
+    margin: 16px 0 0;
+    color: #1f2a22;
+    font-size: var(--fs-3xl);
+    line-height: 1.12;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.03em;
+}
+
+.tofu-ops__login-subtitle {
+    margin: 6px 0 0;
+    color: #8a968c;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__login-form {
+    margin-top: 0;
+}
+
+.tofu-ops__login-submit {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 6px;
+    color: #fffaf0;
+    background: linear-gradient(135deg, #1d6b49, #2f9a67);
+    border-radius: 16px;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-black);
+    letter-spacing: 0.08em;
+    box-shadow: 0 14px 28px rgba(29, 107, 73, 0.22);
+}
+
+.tofu-ops__login-error {
+    padding: 11px 12px;
+    color: #b42318;
+    background: #fff1f0;
+    border-radius: 14px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__user-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 248, 0.92);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 10px 22px rgba(38, 50, 39, 0.06);
+}
+
+.tofu-ops__user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tofu-ops__user-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: #fffaf0;
+    background: linear-gradient(145deg, #1d6b49, #2f9a67);
+    border-radius: 12px;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__user-name {
+    color: #1f2a22;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__user-role {
+    margin-top: 2px;
+    color: #8a968c;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__logout-btn {
+    min-height: 32px;
+    padding: 0 12px;
+    color: #647064;
+    background: #eef3ed;
+    border-radius: 999px;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__next-card,
+.tofu-ops__card,
+.tofu-ops__task-card,
+.tofu-ops__detail-hero,
+.tofu-ops__bill-hero,
+.tofu-ops__bill-hint {
+    width: 100%;
+    background: rgba(255, 255, 248, 0.92);
+    border-radius: 26px;
+}
+
+.tofu-ops__next-card {
+    margin-top: 12px;
+    padding: 17px;
+}
+
+.tofu-ops__section-head,
+.tofu-ops__task-head,
+.tofu-ops__card-head,
+.tofu-ops__detail-header,
+.tofu-ops__row,
+.tofu-ops__bill-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.tofu-ops__section-head h3 {
+    margin: 6px 0 0;
+    color: #1f2a22;
+    font-size: var(--fs-2xl);
+    line-height: 1.12;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.04em;
+}
+
+.tofu-ops__next-route,
+.tofu-ops__task-addr,
+.tofu-ops__bill-hint,
+.tofu-ops__detail-hero p,
+.tofu-ops__detail-topline,
+.tofu-ops__detail-actions button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.tofu-ops__next-route {
+    margin-top: 12px;
+    color: #647064;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__next-items,
+.tofu-ops__task-chips,
+.tofu-ops__exception-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 13px;
+}
+
+.tofu-ops__next-items span,
+.tofu-ops__chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    color: #486154;
+    background: #edf5e9;
+    border-radius: 999px;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__primary-action,
+.tofu-ops__main-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    color: #fffaf0;
+    background: linear-gradient(135deg, #1d6b49, #2f9a67);
+    box-shadow: 0 16px 28px rgba(29, 107, 73, 0.22);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__primary-action {
+    min-height: 48px;
+    margin-top: 15px;
+    border-radius: 17px;
+    font-size: var(--fs-lg);
+}
+
+.tofu-ops__metric-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 12px;
+    overflow: hidden;
+    background: rgba(42, 54, 43, 0.08);
+    border-radius: 24px;
+}
+
+.tofu-ops__metric-strip div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 78px;
+    background: rgba(255, 255, 248, 0.92);
+}
+
+.tofu-ops__metric-strip strong {
+    color: #1d6b49;
+    font-size: var(--fs-4xl);
+    line-height: 1;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.05em;
+}
+
+.tofu-ops__metric-strip span {
+    margin-top: 6px;
+    color: #7a867c;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__home-section,
+.tofu-ops__task-list {
+    margin-top: 16px;
+}
+
+.tofu-ops__home-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 13px;
+    text-align: left;
+    background: rgba(255, 255, 248, 0.92);
+    border-radius: 22px;
+}
+
+.tofu-ops__home-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    color: #1d6b49;
+    background: #eaf6e8;
+    border-radius: 15px;
+}
+
+.tofu-ops__home-card-left,
+.tofu-ops__home-card-right {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.tofu-ops__home-card-left {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tofu-ops__home-card-name,
+.tofu-ops__task-name,
+.tofu-ops__bill-merchant {
+    color: #1f2a22;
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__home-card-meta,
+.tofu-ops__row-sub,
+.tofu-ops__bill-period,
+.tofu-ops__bill-paid {
+    margin-top: 5px;
+    color: #737f75;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+}
+
+.tofu-ops__chevron {
+    color: #9aa59c;
+}
+
+.tofu-ops__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+    white-space: nowrap;
+}
+
+.tofu-ops__badge--待复秤 {
+    color: #0a6690;
+    background: #dff4ff;
+}
+
+.tofu-ops__badge--待拍照,
+.tofu-ops__badge--待送达 {
+    color: #8a5207;
+    background: #fff0c7;
+}
+
+.tofu-ops__badge--异常,
+.tofu-ops__badge--逾期 {
+    color: #b42318;
+    background: #fee4e2;
+}
+
+.tofu-ops__badge--已完成,
+.tofu-ops__badge--已收款 {
+    color: #17663a;
+    background: #dcfce7;
+}
+
+.tofu-ops__badge--部分收款 {
+    color: #75430b;
+    background: #fef3c7;
+}
+
+.tofu-ops__badge--未收款 {
+    color: #51605a;
+    background: #eef2ee;
+}
+
+.tofu-ops__view-switch,
+.tofu-ops__subview-filter {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.tofu-ops__view-switch {
+    margin-top: 2px;
+}
+
+.tofu-ops__subview-filter {
+    margin-top: 12px;
+}
+
+.tofu-ops__view-switch-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 12px;
+    color: #5f6c62;
+    background: rgba(255, 255, 248, 0.92);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(38, 50, 39, 0.06);
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.tofu-ops__view-switch-btn:active {
+    transform: scale(0.97);
+}
+
+.tofu-ops__view-switch-btn.is-active {
+    color: #fffaf0;
+    background: linear-gradient(145deg, #215f42, #2f9a67);
+    border-color: rgba(29, 107, 73, 0.14);
+    box-shadow: 0 12px 28px rgba(29, 107, 73, 0.22);
+}
+
+.tofu-ops__subview-filter-btn {
+    min-height: 42px;
+    border-radius: 16px;
+    color: #627065;
+    background: rgba(255, 255, 248, 0.9);
+    font-size: var(--fs-md);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__subview-filter-btn.is-active {
+    color: #fffaf0;
+    background: linear-gradient(135deg, #1d6b49, #2f9a67);
+    box-shadow: 0 12px 24px rgba(29, 107, 73, 0.2);
+}
+
+.tofu-ops__subview-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+    margin-bottom: 14px;
+}
+
+.tofu-ops__subview-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px;
+    text-align: left;
+    color: #425247;
+    background: rgba(255, 255, 248, 0.94);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(38, 50, 39, 0.08);
+}
+
+.tofu-ops__subview-stat-card strong {
+    color: #1f2a22;
+    font-size: var(--fs-4xl);
+    line-height: 1;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.05em;
+}
+
+.tofu-ops__subview-stat-kicker,
+.tofu-ops__subview-stat-card small,
+.tofu-ops__subview-stat-meta {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__subview-stat-kicker,
+.tofu-ops__subview-stat-card small {
+    color: #728073;
+}
+
+.tofu-ops__subview-stat-meta {
+    color: #1d6b49;
+}
+
+.tofu-ops__subview-stat-card.is-active {
+    color: #fffaf0;
+    background: linear-gradient(145deg, #215f42, #2f9a67);
+    border-color: rgba(29, 107, 73, 0.14);
+    box-shadow: 0 16px 30px rgba(29, 107, 73, 0.22);
+}
+
+.tofu-ops__subview-stat-card.is-active strong,
+.tofu-ops__subview-stat-card.is-active .tofu-ops__subview-stat-meta,
+.tofu-ops__subview-stat-card.is-active .tofu-ops__subview-stat-kicker,
+.tofu-ops__subview-stat-card.is-active small {
+    color: #fffaf0;
+}
+
+.tofu-ops__filter-bar {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    margin-top: 16px;
+    padding: 2px 2px 6px;
+    scrollbar-width: none;
+}
+
+.tofu-ops__filter-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.tofu-ops__filter-chip,
+.tofu-ops__exc-chip {
+    border-radius: 999px;
+    color: #5f6c62;
+    background: rgba(255, 255, 248, 0.84);
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
+    white-space: nowrap;
+}
+
+.tofu-ops__filter-chip {
+    min-height: 39px;
+    padding: 0 14px;
+}
+
+.tofu-ops__filter-chip.is-active {
+    color: #fffaf0;
+    background: #1d6b49;
+    box-shadow: 0 10px 22px rgba(29, 107, 73, 0.22);
+}
+
+.tofu-ops__task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tofu-ops__task-card {
+    padding: 16px;
+    text-align: left;
+}
+
+.tofu-ops__empty-block {
+    padding: 18px 16px;
+    color: #748074;
+    text-align: center;
+    background: rgba(255, 255, 248, 0.9);
+    border: 1px dashed rgba(38, 50, 39, 0.12);
+    border-radius: 20px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__task-head {
+    align-items: flex-start;
+}
+
+.tofu-ops__task-addr {
+    margin-top: 7px;
+    color: #687569;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-bold);
+}
+
+.tofu-ops__task-nums {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 13px;
+}
+
+.tofu-ops__task-nums span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 36px;
+    padding: 0 6px;
+    color: #334238;
+    background: #f0f5eb;
+    border-radius: 13px;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__detail-header {
+    margin-bottom: 12px;
+}
+
+.tofu-ops__back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 38px;
+    padding: 0 13px 0 9px;
+    color: #2f513e;
+    background: rgba(255, 255, 248, 0.86);
+    border-radius: 999px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__detail-hero {
+    padding: 18px;
+    color: #fffaf0;
+    background:
+        radial-gradient(circle at 92% 0%, rgba(255, 235, 165, 0.25), transparent 42%),
+        linear-gradient(145deg, #203628, #2f7e55);
+}
+
+.tofu-ops__detail-topline {
+    flex-wrap: wrap;
+    gap: 8px;
+    color: rgba(255, 250, 240, 0.76);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__detail-topline span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tofu-ops__detail-hero h2 {
+    margin: 14px 0 0;
+    font-size: var(--fs-4xl);
+    line-height: 1.05;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.05em;
+}
+
+.tofu-ops__detail-hero p {
+    margin: 10px 0 0;
+    color: rgba(255, 250, 240, 0.78);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__detail-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-top: 15px;
+}
+
+.tofu-ops__detail-actions button {
+    justify-content: center;
+    min-height: 40px;
+    color: #fffaf0;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 15px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__merchant-note {
+    margin-top: 13px;
+    padding: 12px;
+    color: #3e3423;
+    background: rgba(255, 247, 220, 0.92);
+    border-radius: 16px;
+    font-size: var(--fs-base);
+    line-height: 1.45;
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__detail-flow {
+    margin-top: 12px;
+}
+
+.tofu-ops__card {
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.tofu-ops__card--active {
+    border-color: rgba(29, 107, 73, 0.18);
+    box-shadow: 0 18px 36px rgba(29, 107, 73, 0.13);
+}
+
+.tofu-ops__card--warning {
+    border-color: rgba(180, 35, 24, 0.12);
+}
+
+.tofu-ops__card-head {
+    margin-bottom: 12px;
+    color: #1d6b49;
+}
+
+.tofu-ops__card-title {
+    color: #1f2a22;
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-black);
+    letter-spacing: -0.02em;
+}
+
+.tofu-ops__weight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.tofu-ops__weight-cell {
+    padding: 14px;
+    background: #f1f6ed;
+    border: 1px solid rgba(38, 50, 39, 0.05);
+    border-radius: 20px;
+}
+
+.tofu-ops__weight-cell.is-editing {
+    background: #fffaf0;
+    border-color: rgba(29, 107, 73, 0.18);
+}
+
+.tofu-ops__weight-label,
+.tofu-ops__basket-label {
+    margin-bottom: 8px;
+    color: #737f75;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__weight-big {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    color: #1f2a22;
+    font-size: var(--fs-4xl);
+    line-height: 1;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.05em;
+}
+
+.tofu-ops__weight-big span {
+    color: #737f75;
+    font-size: var(--fs-md);
+    letter-spacing: 0;
+}
+
+.tofu-ops__weight-input {
+    width: 100%;
+    height: 38px;
+    border: 0;
+    outline: none;
+    color: #1f2a22;
+    background: transparent;
+    font-size: var(--fs-5xl);
+    line-height: 1;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.06em;
+}
+
+.tofu-ops__weight-input:focus {
+    color: #1d6b49;
+}
+
+.tofu-ops__diff {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    margin-top: 12px;
+    padding: 0 12px;
+    color: #17663a;
+    background: #dcfce7;
+    border-radius: 999px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__diff.is-warning {
+    color: #b42318;
+    background: #fee4e2;
+}
+
+.tofu-ops__sm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 36px;
+    padding: 0 13px;
+    color: #fffaf0;
+    background: #1d6b49;
+    border-radius: 999px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+}
+
+.tofu-ops__photo-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    aspect-ratio: 1;
+    color: #7b887e;
+    background: #f2f5ed;
+    border: 1px dashed #cbd6ca;
+    border-radius: 20px;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__photo-slot.has-photo {
+    color: #1d6b49;
+    background: #e8f6e7;
+    border-style: solid;
+    border-color: rgba(29, 107, 73, 0.18);
+}
+
+.tofu-ops__basket-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 46px;
+    padding: 0 13px;
+    color: #657267;
+    background: #f1f6ed;
+    border-radius: 17px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__basket-summary strong {
+    color: #1d6b49;
+    white-space: nowrap;
+}
+
+.tofu-ops__basket-edit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.tofu-ops__basket-field {
+    padding: 13px;
+    background: #fffaf0;
+    border: 1px solid rgba(38, 50, 39, 0.06);
+    border-radius: 18px;
+}
+
+.tofu-ops__stepper {
+    display: grid;
+    grid-template-columns: 32px minmax(28px, 1fr) 32px;
+    align-items: center;
+    gap: 6px;
+}
+
+.tofu-ops__stepper-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #1d6b49;
+    background: #eaf6e8;
+    border-radius: 12px;
+}
+
+.tofu-ops__stepper-value {
+    text-align: center;
+    color: #1f2a22;
+    font-size: var(--fs-3xl);
+    line-height: 1;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.04em;
+}
+
+.tofu-ops__row {
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(38, 50, 39, 0.08);
+}
+
+.tofu-ops__row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.tofu-ops__row-title {
+    color: #1f2a22;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__row-val {
+    color: #1f2a22;
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-black);
+    white-space: nowrap;
+}
+
+.tofu-ops__exc-chip {
+    min-height: 36px;
+    padding: 0 12px;
+}
+
+.tofu-ops__exc-chip.is-active {
+    color: #b42318;
+    background: #fee4e2;
+}
+
+.tofu-ops__exception-note {
+    width: 100%;
+    min-height: 84px;
+    margin-top: 12px;
+    resize: vertical;
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    outline: none;
+    color: #1f2a22;
+    background: #fffaf0;
+    border-radius: 17px;
+    padding: 12px;
+    font-size: var(--fs-md);
+    line-height: 1.45;
+    font-weight: var(--fw-bold);
+}
+
+.tofu-ops__exception-note:focus {
+    border-color: rgba(180, 35, 24, 0.34);
+    box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.08);
+}
+
+.tofu-ops__record-btn {
+    width: 100%;
+    min-height: 42px;
+    margin-top: 10px;
+    color: #b42318;
+    background: #fff1f0;
+    border-radius: 15px;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__warning {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 12px;
+    padding: 11px 12px;
+    color: #b42318;
+    background: #fff1f0;
+    border-radius: 16px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__manage-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.tofu-ops__manage-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 12px;
+    color: #5f6c62;
+    background: rgba(255, 255, 248, 0.92);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(38, 50, 39, 0.06);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.tofu-ops__manage-tab:active {
+    transform: scale(0.97);
+}
+
+.tofu-ops__manage-tab span {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.02em;
+}
+
+.tofu-ops__manage-tab.is-active {
+    color: #fffaf0;
+    background: linear-gradient(145deg, #215f42, #2f9a67);
+    border-color: rgba(29, 107, 73, 0.14);
+    box-shadow: 0 12px 28px rgba(29, 107, 73, 0.22);
+}
+
+.tofu-ops__manage-tab.is-active span {
+    color: #fffaf0;
+}
+
+.tofu-ops__section-head--compact {
+    margin-top: 16px;
+    margin-bottom: 2px;
+}
+
+.tofu-ops__card--after-tabs {
+    margin-top: 16px;
+}
+
+.tofu-ops__manage-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.tofu-ops__manage-toolbar .tofu-ops__search-bar {
+    flex: 1;
+    margin-top: 0;
+}
+
+.tofu-ops__manage-toolbar-title {
+    flex: 1;
+    color: #737f75;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__merchant-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.tofu-ops__merchant-card {
+    width: 100%;
+    padding: 14px;
+    text-align: left;
+    color: #243026;
+    background: rgba(255, 255, 248, 0.94);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(38, 50, 39, 0.06);
+    transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.tofu-ops__merchant-card.is-active {
+    border-color: rgba(29, 107, 73, 0.22);
+    box-shadow: 0 10px 28px rgba(29, 107, 73, 0.14);
+}
+
+.tofu-ops__merchant-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.tofu-ops__merchant-card-name {
+    color: #1f2a22;
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__merchant-card-type {
+    color: #737f75;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-black);
+    padding: 2px 8px;
+    background: #f0f5eb;
+    border-radius: 999px;
+}
+
+.tofu-ops__merchant-card-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 12px;
+    background: rgba(38, 50, 39, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tofu-ops__merchant-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 10px 6px;
+    background: rgba(255, 255, 248, 0.96);
+}
+
+.tofu-ops__merchant-stat-val {
+    color: #1f2a22;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__merchant-stat-label {
+    color: #8a968c;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.tofu-ops__info-item {
+    padding: 10px 12px;
+    background: #f4f8f1;
+    border-radius: 14px;
+}
+
+.tofu-ops__info-item--full {
+    grid-column: 1 / -1;
+}
+
+.tofu-ops__info-label {
+    display: block;
+    color: #8a968c;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-black);
+    margin-bottom: 4px;
+}
+
+.tofu-ops__info-value {
+    display: block;
+    color: #1f2a22;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(38, 50, 39, 0.06);
+    text-align: left;
+    color: inherit;
+    background: transparent;
+    border-radius: 0;
+}
+
+.tofu-ops__history-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.tofu-ops__history-row.is-expanded {
+    background: #f0f6ec;
+    margin: 0 -16px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    border-bottom: 0;
+}
+
+.tofu-ops__history-row-main {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.tofu-ops__history-row-date {
+    color: #8a968c;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__history-row-label {
+    color: #1f2a22;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-black);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tofu-ops__history-row-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.tofu-ops__history-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: #f4f8f1;
+    border-radius: 14px;
+    font-size: var(--fs-sm);
+    color: #647064;
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__history-summary strong {
+    color: #1f2a22;
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__manage-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.tofu-ops__manage-overview-card {
+    padding: 14px;
+    background: rgba(255, 255, 248, 0.94);
+    border: 1px solid rgba(38, 50, 39, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(38, 50, 39, 0.08);
+}
+
+.tofu-ops__manage-overview-card span {
+    display: block;
+    color: #728073;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__manage-overview-card strong {
+    display: block;
+    margin-top: 10px;
+    color: #1f2a22;
+    font-size: var(--fs-4xl);
+    line-height: 1;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.05em;
+}
+
+.tofu-ops__manage-overview-card small {
+    display: block;
+    margin-top: 8px;
+    color: #667368;
+    font-size: var(--fs-xs);
+    line-height: 1.45;
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__bottom-action {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    margin: 14px 0 0;
+    padding: 10px 0 calc(4px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(249, 245, 232, 0), #f9f5e8 42%);
+}
+
+.tofu-ops__main-btn {
+    min-height: 54px;
+    border-radius: 18px;
+    font-size: var(--fs-xl);
+}
+
+.tofu-ops__bill-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    color: #fffaf0;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(255, 232, 161, 0.22), transparent 38%),
+        linear-gradient(145deg, #23312a, #2d8057);
+}
+
+.tofu-ops__bill-top {
+    position: relative;
+    z-index: 1;
+    color: rgba(255, 250, 240, 0.8);
+}
+
+.tofu-ops__bill-merchant,
+.tofu-ops__bill-period,
+.tofu-ops__bill-amount,
+.tofu-ops__bill-paid {
+    position: relative;
+    z-index: 1;
+}
+
+.tofu-ops__bill-merchant {
+    margin-top: 18px;
+    color: #fffaf0;
+    font-size: var(--fs-2xl);
+}
+
+.tofu-ops__bill-period,
+.tofu-ops__bill-paid {
+    color: rgba(255, 250, 240, 0.72);
+}
+
+.tofu-ops__bill-amount {
+    margin-top: 16px;
+    font-size: var(--fs-5xl);
+    line-height: 1;
+    font-weight: var(--fw-black);
+    letter-spacing: -0.06em;
+}
+
+.tofu-ops__bill-hero + .tofu-ops__card {
+    margin-top: 12px;
+}
+
+.tofu-ops__bill-hint {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 12px;
+    padding: 13px 14px;
+    color: #465349;
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__tabbar {
+    position: relative;
+    z-index: 9;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 10px 14px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(249, 245, 232, 0.96);
+    border-top: 1px solid rgba(38, 50, 39, 0.08);
+    box-shadow: 0 -12px 24px rgba(38, 50, 39, 0.08);
+    backdrop-filter: blur(18px);
+}
+
+.tofu-ops__tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 58px;
+    color: #7c887f;
+    background: transparent;
+    border-radius: 18px;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-black);
+}
+
+.tofu-ops__tab-btn.is-active {
+    color: #1d6b49;
+    background: #e8f6e7;
+    box-shadow: inset 0 0 0 1px rgba(29, 107, 73, 0.05);
+}
+
+@media (min-width: 760px) {
+    .tofu-ops__shell {
+        width: min(100%, 820px);
+    }
+
+    .tofu-ops__body {
+        padding: 18px 18px 20px;
+    }
+
+    .tofu-ops__quick-grid,
+    .tofu-ops__task-list,
+    .tofu-ops__detail-flow {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .tofu-ops__quick-grid,
+    .tofu-ops__task-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .tofu-ops__quick-card,
+    .tofu-ops__task-card,
+    .tofu-ops__card {
+        margin-bottom: 0;
+    }
+
+    .tofu-ops__detail-hero,
+    .tofu-ops__hero-card,
+    .tofu-ops__next-card,
+    .tofu-ops__metric-strip,
+    .tofu-ops__home-section,
+    .tofu-ops__bill-hero,
+    .tofu-ops__bill-hero + .tofu-ops__card,
+    .tofu-ops__bill-hint,
+    .tofu-ops__bottom-action {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 520px) {
+    .tofu-ops {
+        padding: 0;
+    }
+
+    .tofu-ops__shell {
+        width: 100%;
+        height: var(--vh, 100vh);
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 374px) {
+    .tofu-ops__body {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .tofu-ops__hero-card,
+    .tofu-ops__quick-grid,
+    .tofu-ops__weight-grid,
+    .tofu-ops__basket-edit,
+    .tofu-ops__detail-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .tofu-ops__task-nums {
+        grid-template-columns: 1fr;
+    }
+}

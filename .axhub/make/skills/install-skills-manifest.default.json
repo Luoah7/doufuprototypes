@@ -1,0 +1,66 @@
+{
+  "version": 3,
+  "generatedAt": "2026-03-28",
+  "skills": [
+    {
+      "id": "project-guide",
+      "titleZh": "项目引导",
+      "titleEn": "Project Guide",
+      "description": "不知道从何开始或需要获得开发建议时，执行该技能。AI 会为你评估当前项目状态，并推荐最佳的下一步操作与平台使用技巧。",
+      "localPath": "/skills/project-guide",
+      "skillMdPath": "/skills/project-guide/SKILL.md",
+      "slashCommand": "/project-guide",
+      "category": "项目管理"
+    },
+    {
+      "id": "create-workflow",
+      "titleZh": "创建内容",
+      "titleEn": "Unified Create",
+      "description": "想创建任何新内容（如原型、组件、主题或文档）时执行此技能。AI 会引导你完成规范的创建流程，无需手动记忆繁杂的规则。",
+      "localPath": "/skills/create-workflow",
+      "skillMdPath": "/skills/create-workflow/SKILL.md",
+      "slashCommand": "/create-workflow",
+      "category": "日常工作流"
+    },
+    {
+      "id": "design-review",
+      "titleZh": "设计 Review",
+      "titleEn": "Design Review",
+      "description": "界面开发完成后，想检查是否符合项目 UI 规范时执行此技能。AI 会帮你找出违规样式并提供修改建议，或帮你将新设计沉淀为主题。",
+      "localPath": "/skills/design-review",
+      "skillMdPath": "/skills/design-review/SKILL.md",
+      "slashCommand": "/design-review",
+      "category": "日常工作流"
+    },
+    {
+      "id": "project-memory",
+      "titleZh": "项目整理",
+      "titleEn": "Project Memory",
+      "description": "想整理项目积累的经验时执行此技能。AI 会把近期的代码变更、零散信息和新增逻辑沉淀至说明文档中，以保持项目资产井井有条。",
+      "localPath": "/skills/project-memory",
+      "skillMdPath": "/skills/project-memory/SKILL.md",
+      "slashCommand": "/project-memory",
+      "category": "日常工作流"
+    },
+    {
+      "id": "work-summary",
+      "titleZh": "工作总结",
+      "titleEn": "Work Summary",
+      "description": "日常报告编写利器。随时执行该技能来回顾近期的成果，AI 会自动追踪你的代码变更，直接为你生成一份清晰的日报或工作总结。",
+      "localPath": "/skills/work-summary",
+      "skillMdPath": "/skills/work-summary/SKILL.md",
+      "slashCommand": "/work-summary",
+      "category": "日常工作流"
+    },
+    {
+      "id": "skills-management",
+      "titleZh": "技能管理",
+      "titleEn": "Skills Management",
+      "description": "管理和维护当前项目的技能库。当你想为团队添加新的自定义技能、修改现有描述或恢复官方默认技能时，执行此技能。",
+      "localPath": "/skills/skills-management",
+      "skillMdPath": "/skills/skills-management/SKILL.md",
+      "slashCommand": "/skills-management",
+      "category": "项目管理"
+    }
+  ]
+}

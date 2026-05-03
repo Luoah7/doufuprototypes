@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-05-03T16:38:29.524Z",
+  "packages": [
+    {
+      "packageName": "axhub-annotation",
+      "outputDirRelative": "vendor/axhub-annotation",
+      "runtimeEntryRelative": "vendor/axhub-annotation/dist/index.mjs",
+      "typesEntryRelative": "vendor/axhub-annotation/dist/index.d.ts"
+    }
+  ]
+}

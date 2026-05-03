@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-28",
+  "skills": [
+    {
+      "id": "brainstorming",
+      "title": "Brainstorming",
+      "titleZh": "头脑风暴",
+      "description": "用于快速发散想法、明确文档主题与结构方向。",
+      "defaultSelected": true,
+      "localPaths": [
+        "/skills/third-party/brainstorming/SKILL.md"
+      ],
+      "references": [
+        "obra/superpowers@brainstorming"
+      ],
+      "category": "研究与探索"
+    },
+    {
+      "id": "deep-research",
+      "title": "Deep Research",
+      "titleZh": "深度研究",
+      "description": "用于系统化收集证据、形成深入研究材料。",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/third-party/deep-research/SKILL.md"
+      ],
+      "references": [
+        "199-biotechnologies/claude-deep-research-skill@deep-research"
+      ],
+      "category": "研究与探索"
+    },
+    {
+      "id": "anything-to-notebooklm",
+      "title": "Anything to NotebookLM",
+      "titleZh": "资料转 NotebookLM",
+      "description": "将原始素材整理为适合 NotebookLM 使用的输入结构。",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/third-party/anything-to-notebooklm/SKILL.md"
+      ],
+      "references": [
+        "joeseesun/anything-to-notebooklm@anything-to-notebooklm"
+      ],
+      "category": "研究与探索"
+    },
+    {
+      "id": "prd",
+      "title": "PRD",
+      "titleZh": "产品需求文档",
+      "description": "用于生成或完善 PRD 结构与内容。",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/third-party/prd/SKILL.md"
+      ],
+      "references": [
+        "https://skills.sh/github/awesome-copilot/prd"
+      ],
+      "category": "产品与需求"
+    },
+    {
+      "id": "product-requirements",
+      "title": "Product Requirements",
+      "titleZh": "产品需求",
+      "description": "用于整理产品目标、范围与需求细节。",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/third-party/product-requirements/SKILL.md"
+      ],
+      "references": [
+        "https://skills.sh/cexll/myclaude/product-requirements"
+      ],
+      "category": "产品与需求"
+    },
+    {
+      "id": "research",
+      "title": "Research",
+      "titleZh": "研究分析",
+      "description": "用于进行主题研究、资料筛选与结果归纳。",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/third-party/research/SKILL.md"
+      ],
+      "references": [
+        "https://skills.sh/tavily-ai/skills/research"
+      ],
+      "category": "研究与探索"
+    },
+    {
+      "id": "user-story-writing",
+      "title": "User Story Writing",
+      "titleZh": "用户故事编写",
+      "description": "用于编写清晰可执行的用户故事。",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/third-party/user-story-writing/SKILL.md"
+      ],
+      "references": [
+        "https://skills.sh/aj-geddes/useful-ai-prompts/user-story-writing"
+      ],
+      "category": "产品与需求"
+    }
+  ]
+}

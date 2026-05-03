@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-28",
+  "skills": [
+    {
+      "id": "frontend-design",
+      "title": "Landing & Marketing",
+      "titleEn": "Landing & Marketing",
+      "titleZh": "C端展示与落地页",
+      "description": "使用场景：需要打造高辨识度视觉风格的页面/落地页/展示型界面时；强调创意审美、版式与动效表达，避免模板化“AI 味”。",
+      "localPaths": [
+        "/skills/third-party/frontend-design/SKILL.md"
+      ],
+      "sourcePageUrl": "https://skills.sh/anthropics/skills/frontend-design",
+      "sourceRepoUrl": "https://github.com/anthropics/skills",
+      "sourcePath": "skills/frontend-design",
+      "license": null,
+      "category": "设计与体验"
+    },
+    {
+      "id": "interface-design",
+      "title": "Admin & SaaS Interface",
+      "titleEn": "Admin & SaaS Interface",
+      "titleZh": "B端后台与SaaS",
+      "description": "使用场景：后台、SaaS、工具类产品的交互界面设计（仪表盘/设置页/数据界面）；强调信息架构与可用性，不用于营销落地页。",
+      "localPaths": [
+        "/skills/third-party/interface-design/SKILL.md"
+      ],
+      "sourcePageUrl": "https://skills.sh/dammyjay93/interface-design/interface-design",
+      "sourceRepoUrl": "https://github.com/Dammyjay93/interface-design",
+      "sourcePath": ".claude/skills/interface-design",
+      "license": null,
+      "category": "设计与体验"
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "title": "UI/UX Pro Max",
+      "titleEn": "UI/UX Pro Max",
+      "titleZh": "UI/UX 专家指南",
+      "description": "使用场景：需要快速选型和评审 UI/UX 方案时（色板、字体、图表、无障碍、响应式、性能）；更偏规则库与优化清单，而非单一风格生成。",
+      "localPaths": [
+        "/skills/ui-ux-pro-max/SKILL.md"
+      ],
+      "sourcePageUrl": "https://skills.sh/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+      "sourceRepoUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourcePath": ".claude/skills/ui-ux-pro-max",
+      "license": null,
+      "category": "设计与体验"
+    },
+    {
+      "id": "implement-design",
+      "title": "figma-implement-design",
+      "titleEn": "figma-implement-design",
+      "titleZh": "Figma 设计实现还原",
+      "description": "使用场景：拿到 Figma 链接或选中节点后，基于 Figma MCP 进行 1:1 设计还原并输出可落地代码。",
+      "localPaths": [
+        "/skills/third-party/implement-design/SKILL.md"
+      ],
+      "sourcePageUrl": "https://skills.sh/figma/mcp-server-guide/implement-design",
+      "sourceRepoUrl": "https://github.com/figma/mcp-server-guide",
+      "sourcePath": "skills/implement-design",
+      "license": null,
+      "category": "开发与实现"
+    },
+    {
+      "id": "baoyu-image-gen",
+      "title": "Baoyu Image Gen",
+      "titleEn": "Baoyu Image Gen",
+      "titleZh": "宝玉图像生成",
+      "description": "使用场景：批量生成视觉素材（插画、封面、背景图等）而非页面结构；支持 OpenAI/Google/DashScope、多比例与参考图生成。",
+      "localPaths": [
+        "/skills/third-party/baoyu-image-gen/SKILL.md"
+      ],
+      "sourcePageUrl": "https://skills.sh/jimliu/baoyu-skills/baoyu-image-gen",
+      "sourceRepoUrl": "https://github.com/jimliu/baoyu-skills",
+      "sourcePath": "skills/baoyu-image-gen",
+      "license": null,
+      "category": "设计与体验"
+    },
+    {
+      "id": "shadcn-ui",
+      "title": "shadcn/ui",
+      "titleEn": "shadcn/ui",
+      "titleZh": "shadcn 组件体系",
+      "description": "使用场景：React + Tailwind 项目搭建/扩展 shadcn/ui 组件体系；侧重可访问性、表单模式、主题变量与组件工程化复用。",
+      "localPaths": [
+        "/skills/third-party/shadcn-ui/SKILL.md"
+      ],
+      "sourcePageUrl": "https://skills.sh/giuseppe-trisciuoglio/developer-kit/shadcn-ui",
+      "sourceRepoUrl": "https://github.com/giuseppe-trisciuoglio/developer-kit",
+      "sourcePath": "plugins/developer-kit-typescript/skills/shadcn-ui",
+      "license": null,
+      "category": "开发与实现"
+    },
+    {
+      "id": "ant-design",
+      "title": "Ant Design",
+      "titleEn": "Ant Design",
+      "titleZh": "Ant Design 企业后台",
+      "description": "使用场景：企业后台/管理系统采用 antd 6 + Pro + X 时的组件选型与架构决策；强调 token 主题、SSR、CRUD 与 AI 聊天 UI 模式。",
+      "localPaths": [
+        "/skills/third-party/ant-design/SKILL.md"
+      ],
+      "sourcePageUrl": "https://skills.sh/ant-design/antd-skill/ant-design",
+      "sourceRepoUrl": "https://github.com/ant-design/antd-skill",
+      "sourcePath": "skills/ant-design",
+      "license": null,
+      "category": "开发与实现"
+    },
+    {
+      "id": "stitch-skills",
+      "title": "Stitch Skills",
+      "titleEn": "Stitch Skills",
+      "titleZh": "Stitch 主流程编排",
+      "description": "使用场景：以 spec.md 驱动 Stitch 设计并确认后再生成代码；统一编排 design-md、stitch-loop、react-components，避免跳过设计 gate。",
+      "localPaths": [
+        "/skills/third-party/stitch-skills/stitch-main-workflow/SKILL.md"
+      ],
+      "sourcePageUrl": "https://github.com/google-labs-code/stitch-skills",
+      "sourceRepoUrl": "https://github.com/google-labs-code/stitch-skills",
+      "sourcePaths": [
+        "skills/design-md",
+        "skills/react-components",
+        "skills/stitch-loop"
+      ],
+      "license": "Apache-2.0",
+      "category": "开发与实现"
+    },
+    {
+      "id": "gemini-cli-uiux",
+      "title": "Gemini CLI UI/UX",
+      "titleEn": "Gemini CLI UI/UX",
+      "titleZh": "Gemini 设计",
+      "description": "AI 直接调用 Gemini CLI 进行 UI/UX 设计与落地",
+      "localPaths": [
+        "/skills/gemini-cli-uiux/SKILL.md"
+      ],
+      "activeTabs": [
+        "prototypes"
+      ],
+      "license": null,
+      "category": "开发与实现"
+    },
+    {
+      "id": "design-bid-proposals",
+      "title": "Design Bid Proposals",
+      "titleEn": "Design Bid Proposals",
+      "titleZh": "设计比稿三案",
+      "description": "使用场景：在原型或组件新建时默认生成 A 稳健型、B 平衡型、C 突破型三案；严格在 3–6 个未锁死维度上拉开差异，并输出差异对比表与推荐方向。",
+      "localPaths": [
+        "/skills/design-bid-proposals/SKILL.md"
+      ],
+      "license": null,
+      "category": "设计与体验"
+    },
+    {
+      "id": "pencil-sync-after-prototype-workflow",
+      "title": "Pencil Sync After Prototype Workflow",
+      "titleEn": "Pencil Sync After Prototype Workflow",
+      "titleZh": "原型后置 Pencil 同步",
+      "description": "使用场景：先完成 spec.md 与 index.tsx 原型实现，再 1:1 回建 Pencil，并要求后续代码、规格与 .pen 强同步。",
+      "localPaths": [
+        "/skills/pencil-sync-after-prototype-workflow/SKILL.md"
+      ],
+      "activeTabs": [
+        "prototypes"
+      ],
+      "license": null,
+      "category": "开发与实现"
+    },
+    {
+      "id": "taste-skill",
+      "title": "Design Taste",
+      "titleEn": "Design Taste",
+      "titleZh": "高品质前端设计",
+      "description": "使用场景：打造高品质、去 AI 味的前端界面；通过设计方差、动效强度、视觉密度三个维度精确控制输出风格，内置反 AI 模板化规则与高端设计灵感库。",
+      "localPaths": [
+        "/skills/third-party/taste-skill/SKILL.md"
+      ],
+      "sourceRepoUrl": "https://github.com/Leonxlnx/taste-skill",
+      "sourcePath": "taste-skill",
+      "license": null,
+      "category": "设计与体验"
+    }
+  ]
+}

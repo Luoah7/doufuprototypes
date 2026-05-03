@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-28",
+  "skills": [
+    {
+      "id": "tailwind-design-system",
+      "title": "Tailwind Design System",
+      "titleZh": "Tailwind 设计系统",
+      "description": "用于基于 Tailwind CSS v4 设计和落地可扩展主题系统，覆盖 token、变量、组件模式与响应式规范。",
+      "defaultSelected": true,
+      "localPaths": [
+        "/skills/third-party/tailwind-design-system/SKILL.md"
+      ],
+      "category": "开发与实现"
+    },
+    {
+      "id": "theme-factory",
+      "title": "Theme Factory",
+      "titleZh": "主题工厂",
+      "description": "用于快速构建和应用视觉主题方案，包含颜色体系与字体搭配参考，适合主题风格探索与定稿。",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/third-party/theme-factory/SKILL.md"
+      ],
+      "category": "设计与体验"
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "title": "UI/UX Pro Max",
+      "titleZh": "UI/UX 专家指南",
+      "description": "用于补充 UI/UX 规则库与评审清单，覆盖可访问性、色板、排版、交互、响应式与性能优化建议。",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/ui-ux-pro-max/SKILL.md"
+      ],
+      "category": "设计与体验"
+    },
+    {
+      "id": "ui-design-brain",
+      "title": "UI Design Brain",
+      "titleZh": "UI 设计大脑",
+      "description": "用于基于 60+ 真实组件模式与界面最佳实践来辅助主题和界面风格设计，减少通用 AI 模板感。",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/third-party/ui-design-brain/SKILL.md"
+      ],
+      "sourceRepoUrl": "https://github.com/carmahhawwari/ui-design-brain",
+      "sourcePath": ".",
+      "license": "MIT",
+      "category": "设计与体验"
+    },
+    {
+      "id": "gemini-cli-uiux",
+      "title": "Gemini CLI UI/UX",
+      "titleZh": "Gemini 设计",
+      "description": "AI 直接调用 Gemini CLI 进行 UI/UX 设计与落地",
+      "defaultSelected": false,
+      "localPaths": [
+        "/skills/gemini-cli-uiux/SKILL.md"
+      ],
+      "category": "设计与体验"
+    }
+  ]
+}
